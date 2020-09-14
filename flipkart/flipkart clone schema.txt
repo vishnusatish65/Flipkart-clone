@@ -1,0 +1,74 @@
+User Table
+    Column('id', Integer, Primary Key),
+    Column('Username', VARCHAR(50), Unique),
+    Column('fullname', VARCHAR(50)),
+    Column('Password', VARCHAR(50))
+    Column('Type', VARCHAR(50))
+    Column('Contact', VARCHAR(50))
+
+User_Address
+    one to one relationship with User Table
+    Column('id', Integer, Primary Key),
+    Column('User_id', Integer, Foreign Key referencing User Table id),
+    Column('Address', Text),
+
+category
+    Column('id', Integer, Primary Key),
+    Column('Type id', Integer),  electronics 1) mobile 1a)Apple, b Samsung, c Vivo, d Honor, e Oppo
+                                            2) Laptop 2a)Asus, 2b)Dell
+                                            3)Tv 3a)MI, 3b)Vu, 3c)LG
+                                
+
+Category Treepath
+    Column('ancestor id, Integer)
+    Column(descendant, Integer)
+
+Products
+    many to one relationship with user table,category
+    Column('id', Integer, Primary Key),
+    Column('name', VARCHAR(50)),
+    Column("User id",Integer, Foreign key referencing User Table id)
+    Column('category_id', Integer, Foreign key referencing category table,)
+
+Products_meta
+    one to one relationship with Products
+    Column('id', Integer, Primary Key),
+    Column('price',Integer)
+    Column('description', VARCHAR(55)
+    Column('Product_id, Integer, Foreign key referencing Products Table)
+    Column("ImageURl", Text, )
+
+Orders
+    many to one relationship with user
+    Column('id', Integer, Primary Key),
+    Column("User id",Integer, Foreign key referencing User Table id)
+    Column('Payment_Status', Text)
+    Column('Status, Text)
+    Column('Amount')
+
+Order_Products
+    Many to many relationship with order and product
+    Column('id', Integer, Primary Key),
+    Column('order id', Integer, Foreign Key referencing orders id),
+    Column('Product_id, Integer, Foreign key referencing Products Table)
+
+Cart
+    many to many relationship with products and user
+    Column('id', Integer, Primary Key)
+    Column('Product_id, Integer, Foreign key referencing Products Table)
+    Column("User id",Integer, Foreign key referencing User Table id)
+
+Payments
+    many to may relationship with orders
+    Column('id', Integer, Primary Key)
+    Column('order id', Integer, Foreign Key referencing orders id)
+    
+
+Comment
+    many to many relationship with user, and product
+    Column('id', Integer, Primary Key),
+    Column("User id",Integer, Foreign key referencing User Table id)
+    Column("UpVotes",Integer)
+    Column("down Votes",Integer)
+    Column('Product_id, Integer, Foreign key referencing Products Table)
+
